@@ -3,11 +3,12 @@
 Simple command line tool that will download the latest version of Go.
 
 It may seem a little chicken and egg for a tool written in Go to be used to download Go.
-However due to the statically compile nature of Go there is no dependency on the Go language package to run this tool.
+However due to the statically compiled nature of Go there is no dependency on the Go language package to run this tool.
 
-The purpose of this tool is to be used in automated build pipelines to download the latest version of Go before compiling your Go project with it.
+The idea is for this tool to be used in automated build pipelines to download the latest version of Go.
+It therefore becomes simpler to automate compiling your Go project with the latest Go version without having static version numbers in your configuration.
 
-The checksum of the file is verified as part of the download process.
+The checksum is verified as part of the download process.
 
 ## Build
 On a host that already has Go installed:
@@ -15,13 +16,13 @@ On a host that already has Go installed:
 ```go get -u github.com/jcmturner/godownload```
 
 ## Run
-To simply download the latest Go version to the current working directory for the OS and architecture ```godownload``` is run on:
+To simply download the latest Go version, to the current working directory, corresponding to the OS and architecture ```godownload``` is run on:
 
 ```
 ./godownload
 ```
 
-The OS, architecture and path to download to can be specified with the following arguments:
+The OS, architecture and path to download to can be specified using arguments:
 
 ```
 Usage of godownload:
