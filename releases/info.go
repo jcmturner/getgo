@@ -26,6 +26,69 @@ const (
 	KindSource    = "source"
 )
 
+func ValidOS(s string) bool {
+	// The known operating systems. Copied from github.com/golang/go/src/cmd/dist/build.go with "" added for "source"
+	var okgoos = []string{
+		"darwin",
+		"dragonfly",
+		"linux",
+		"android",
+		"solaris",
+		"freebsd",
+		"nacl",
+		"netbsd",
+		"openbsd",
+		"plan9",
+		"windows",
+		"",
+	}
+	for _, os := range okgoos {
+		if os == s {
+			return true
+		}
+	}
+	return false
+}
+
+func ValidArch(s string) bool {
+	// The known operating systems. Copied from github.com/golang/go/src/cmd/dist/build.go with "" added for "source"
+	var okgoarch = []string{
+		"386",
+		"amd64",
+		"amd64p32",
+		"arm",
+		"arm64",
+		"mips",
+		"mipsle",
+		"mips64",
+		"mips64le",
+		"ppc64",
+		"ppc64le",
+		"s390x",
+		"",
+	}
+	for _, a := range okgoarch {
+		if a == s {
+			return true
+		}
+	}
+	return false
+}
+
+func ValidKind(s string) bool {
+	var okkind = []string{
+		"archive",
+		"installer",
+		"source",
+	}
+	for _, k := range okkind {
+		if k == s {
+			return true
+		}
+	}
+	return false
+}
+
 func LoadReleaseInfo() (Releases, error) {
 	var r Releases
 	resp, err := http.Get(infoURL)
@@ -44,6 +107,9 @@ func LoadReleaseInfo() (Releases, error) {
 	sort.Sort(r)
 	for _, rf := range r {
 		sort.Sort(rf.Files)
+		for i := range rf.Files {
+			rf.Files[i].URL = fmt.Sprintf(downloadURL, rf.Files[i].Filename)
+		}
 	}
 	return r, nil
 }
@@ -57,6 +123,7 @@ type File struct {
 	ChecksumSHA256 string `json:"sha256"`
 	Size           int64  `json:"size"`
 	Kind           string `json:"kind"` // "archive", "installer", "source"
+	URL            string `json:"-"`
 }
 
 type Files []File
@@ -147,8 +214,7 @@ func (rs Releases) Latest(os, arch, kind string) File {
 }
 
 func (f File) Download(w io.Writer) error {
-	url := fmt.Sprintf(downloadURL, f.Filename)
-	resp, err := http.Get(url)
+	resp, err := http.Get(f.URL)
 	if err != nil {
 		return err
 	}
