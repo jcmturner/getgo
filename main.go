@@ -101,7 +101,7 @@ func download(path string, f releases.File) error {
 	if err != nil {
 		return fmt.Errorf("Error opening destination file: %v\n", err)
 	}
-	fmt.Printf("Downloading to %s\n...\n", dwnfile.Name())
+	fmt.Printf("Downloading to: %s\n...\n", dwnfile.Name())
 	err = f.Download(dwnfile)
 	if err != nil {
 		return fmt.Errorf("Error downloading Go release: %v\n", err)

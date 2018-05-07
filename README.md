@@ -7,6 +7,8 @@ However due to the statically compile nature of Go there is no dependency on the
 
 The purpose of this tool is to be used in automated build pipelines to download the latest version of Go before compiling your Go project with it.
 
+The checksum of the file is verified as part of the download process.
+
 ## Build
 On a host that already has Go installed:
 
