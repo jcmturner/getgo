@@ -7,7 +7,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/jcmturner/godownload/releases"
+	"github.com/jcmturner/getgo/releases"
 )
 
 const (

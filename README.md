@@ -1,4 +1,4 @@
-# godownload
+# getgo
 
 Simple command line tool that will download the latest version of Go.
 
@@ -13,19 +13,19 @@ The checksum is verified as part of the download process.
 ## Build
 On a host that already has Go installed:
 
-```go get -u github.com/jcmturner/godownload```
+```go get -u github.com/jcmturner/getgo```
 
 ## Run
-To simply download the latest Go version, to the current working directory, corresponding to the OS and architecture ```godownload``` is run on:
+To simply download the latest Go version, to the current working directory, corresponding to the OS and architecture ```getgo``` is run on:
 
 ```
-./godownload
+./getgo
 ```
 
 The OS, architecture and path to download to can be specified using arguments:
 
 ```
-Usage of godownload:
+Usage of getgo:
   -arch string
     	Architecture type of release to download
   -info
