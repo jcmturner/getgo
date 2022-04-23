@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	infoURL     = "https://golang.org/dl/?mode=json"
+	infoURL     = "https://go.dev/dl/?mode=json"
 	downloadURL = "https://dl.google.com/go/%s"
 
 	KindArchive   = "archive"
@@ -31,6 +31,9 @@ func ValidOS(s string) bool {
 	var okgoos = []string{
 		"darwin",
 		"dragonfly",
+		"illumos",
+		"ios",
+		"js",
 		"linux",
 		"android",
 		"solaris",
@@ -40,6 +43,7 @@ func ValidOS(s string) bool {
 		"openbsd",
 		"plan9",
 		"windows",
+		"aix",
 		"",
 	}
 	for _, os := range okgoos {
@@ -55,7 +59,6 @@ func ValidArch(s string) bool {
 	var okgoarch = []string{
 		"386",
 		"amd64",
-		"amd64p32",
 		"arm",
 		"arm64",
 		"mips",
@@ -64,7 +67,10 @@ func ValidArch(s string) bool {
 		"mips64le",
 		"ppc64",
 		"ppc64le",
+		"riscv64",
 		"s390x",
+		"sparc64",
+		"wasm",
 		"",
 	}
 	for _, a := range okgoarch {
@@ -114,7 +120,7 @@ func LoadReleaseInfo() (Releases, error) {
 	return r, nil
 }
 
-// File represents a file on the golang.org downloads page.
+// File represents a file on the go.dev downloads page.
 type File struct {
 	Filename       string `json:"filename"`
 	OS             string `json:"os"`

@@ -13,7 +13,9 @@ The checksum is verified as part of the download process.
 ## Build
 On a host that already has Go installed:
 
-```go get -u github.com/jcmturner/getgo```
+```
+go install github.com/jcmturner/getgo@latest
+```
 
 ## Run
 To simply download the latest Go version, to the current working directory, corresponding to the OS and architecture ```getgo``` is run on:
