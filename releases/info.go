@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	infoURL     = "https://golang.org/dl/?mode=json"
+	infoURL     = "https://go.dev/dl/?mode=json"
 	downloadURL = "https://dl.google.com/go/%s"
 
 	KindArchive   = "archive"
@@ -114,7 +114,7 @@ func LoadReleaseInfo() (Releases, error) {
 	return r, nil
 }
 
-// File represents a file on the golang.org downloads page.
+// File represents a file on the go.dev downloads page.
 type File struct {
 	Filename       string `json:"filename"`
 	OS             string `json:"os"`
