@@ -31,6 +31,9 @@ func ValidOS(s string) bool {
 	var okgoos = []string{
 		"darwin",
 		"dragonfly",
+		"illumos",
+		"ios",
+		"js",
 		"linux",
 		"android",
 		"solaris",
@@ -40,6 +43,7 @@ func ValidOS(s string) bool {
 		"openbsd",
 		"plan9",
 		"windows",
+		"aix",
 		"",
 	}
 	for _, os := range okgoos {
@@ -55,7 +59,6 @@ func ValidArch(s string) bool {
 	var okgoarch = []string{
 		"386",
 		"amd64",
-		"amd64p32",
 		"arm",
 		"arm64",
 		"mips",
@@ -64,7 +67,10 @@ func ValidArch(s string) bool {
 		"mips64le",
 		"ppc64",
 		"ppc64le",
+		"riscv64",
 		"s390x",
+		"sparc64",
+		"wasm",
 		"",
 	}
 	for _, a := range okgoarch {
